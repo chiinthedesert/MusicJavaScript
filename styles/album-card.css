@@ -1,0 +1,58 @@
+.album-card {
+  flex-shrink: 0;
+}
+
+.album-cover {
+  width: 100%;
+  aspect-ratio: 1;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: #b8b0a8;
+}
+
+.album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-info {
+  margin-top: 6px;
+}
+
+.album-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-artist {
+  font-size: 0.75rem;
+  opacity: 0.6;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CÁC PHIÊN BẢN KHÁC */
+.album-card.home {
+  width: clamp(110px, 28vw, 140px);
+}
+
+.album-card.albums {
+  width: clamp(150px, 32vw, 200px);
+}
+
+.album-card.albums .album-name {
+  font-size: 1rem;
+}
+
+.album-card.albums .album-artist {
+  font-size: 0.85rem;
+}
