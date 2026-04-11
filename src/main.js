@@ -10,26 +10,47 @@ import { SongsView } from "./views/songs.js";
 import { AlbumsView } from "./views/albums.js";
 import { PlaylistsView } from "./views/playlists.js";
 import { ArtistsView } from "./views/artists.js";
+import { PlayerView, renderPlayerView } from "./views/player.js";
 
 const app = document.getElementById("app");
-const view = document.getElementById("view");
 const views = {
   home: HomeView,
   songs: SongsView,
   albums: AlbumsView,
   playlists: PlaylistsView,
   artists: ArtistsView,
+  player: PlayerView,
 };
 
 export function renderView() {
-  view.innerHTML = views[state.getState().currentView]();
+  views[state.getState().currentView]();
 }
-
-state.subscribe(() => {
-  renderView();
-  renderNavBar();
-});
 
 NavBar();
 PlayerBar();
+
+renderView();
+renderNavBar();
 renderPlayerBar();
+
+let lastView = state.getState().currentView;
+state.subscribe(() => {
+  const currentView = state.getState().currentView;
+
+  if (lastView !== currentView) {
+    renderView();
+    lastView = currentView;
+  }
+
+  renderNavBar();
+  renderPlayerBar();
+
+  if (currentView === "player") {
+    renderPlayerView();
+  }
+
+  document.getElementById("player-bar").style.display =
+    currentView === "player" ? "none" : "block";
+  document.getElementById("navbar").style.display =
+    currentView === "player" ? "none" : "block";
+});

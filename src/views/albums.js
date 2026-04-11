@@ -1,10 +1,10 @@
-import { albums } from "../data.js";
 import { SearchBar } from "../components/searchBar.js";
 
 export function AlbumsView() {
-  return `
+  const html = `
     <div class="container albums-view">
       ${SearchBar()}
     </div>
   `;
+  document.getElementById("view").innerHTML = html;
 }

@@ -1,6 +1,8 @@
 const state = {
   currentView: "home",
-  currentSong: { albumId: "carrie-lowell", id: "01" },
+  historyView: [],
+  currentSong: { albumId: "not-cute-anymore", id: "01" },
+  // currentSong: null,
 
   isPlaying: false,
   currentTime: 0,
@@ -16,10 +18,16 @@ export function subscribe(fn) {
   listeners.push(fn);
 }
 
-export function setState(partial) {
+export function setState(partial, { skipHistory = false } = {}) {
+  if (
+    !skipHistory &&
+    partial.currentView &&
+    partial.currentView !== state.currentView
+  ) {
+    state.historyView.push(state.currentView);
+  }
+
   Object.assign(state, partial);
 
-  listeners.forEach((fn) => {
-    fn();
-  });
+  listeners.forEach((fn) => fn());
 }

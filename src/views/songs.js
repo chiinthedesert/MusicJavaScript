@@ -1,10 +1,11 @@
-import { albums } from "../data.js";
 import { SearchBar } from "../components/searchBar.js";
 
 export function SongsView() {
-  return `
+  const html = `
     <div class="container songs-view">
       ${SearchBar()}
     </div>
   `;
+
+  document.getElementById("view").innerHTML = html;
 }

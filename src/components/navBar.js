@@ -1,8 +1,8 @@
 import * as state from "../state.js";
 
 export function NavBar() {
-  var html = `
-      <nav class="navbar padding secondary row center-align " style="border-radius: 2rem 2rem 0 0;">
+  const html = `
+      <nav class="navbar padding secondary row top-round center-align" style="">
         <button class="button" data-view="home">
           <i>home</i>
         </button>
@@ -25,7 +25,6 @@ export function NavBar() {
       </nav>
     `;
   document.getElementById("navbar").insertAdjacentHTML("beforeend", html);
-  state.setState({ currentView: "home" });
 
   document.querySelectorAll("#navbar button").forEach((button) => {
     button.onclick = () => {

@@ -1,25 +1,8 @@
-import { albums } from "../data.js";
+import { getCurrentSong } from "../utils/getCurrentSong.js";
 import * as state from "../state.js";
 
-function getCurrentSong() {
-  const { currentSong } = state.getState();
-  if (!currentSong) return null;
-
-  const album = albums.find((album) => album.id === currentSong.albumId);
-  if (!album) return null;
-
-  const track = album.tracks.find((track) => track.id === currentSong.id);
-  if (!track) return null;
-
-  return {
-    title: track.title,
-    artist: album.artist,
-    cover: album.cover,
-  };
-}
-
 export function PlayerBar() {
-  var html = `
+  const html = `
     <div class="row primary-container center-align round no-space left-margin right-margin" style="">
 
       <div class="small-padding">
@@ -42,7 +25,7 @@ export function PlayerBar() {
           <i>skip_previous</i>
         </button>
         <button id="player-bar-play-button" class="active circle primary">
-          <i id="player-bar-icon">play_arrow</i>
+          <i id="player-bar-play-icon">play_arrow</i>
         </button>
         <button class="circle fill">
           <i>skip_next</i>
@@ -52,6 +35,10 @@ export function PlayerBar() {
     </div>
   `;
   document.getElementById("player-bar").innerHTML = html;
+  document.getElementById("player-bar").addEventListener("click", (e) => {
+    if (e.target.closest("button")) return;
+    state.setState({ currentView: "player" });
+  });
 
   document.getElementById("player-bar-play-button").onclick = () => {
     const { isPlaying } = state.getState();
@@ -67,7 +54,7 @@ export function renderPlayerBar() {
   const titleDiv = document.getElementById("player-bar-song-title");
   const artistDiv = document.getElementById("player-bar-artist");
   const cover = document.getElementById("player-bar-cover");
-  const playIcon = document.getElementById("player-bar-icon");
+  const playIcon = document.getElementById("player-bar-play-icon");
 
   const title = titleDiv.querySelector("span");
   const artist = artistDiv.querySelector("span");
@@ -75,7 +62,7 @@ export function renderPlayerBar() {
   if (!data) {
     title.textContent = "No song";
     artist.textContent = "";
-    cover.src = "/src/img/no-song.jpg";
+    cover.src = "src/img/no-song.jpg";
   } else {
     title.textContent = data.title;
     artist.textContent = data.artist;

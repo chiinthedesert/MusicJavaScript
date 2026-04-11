@@ -4,14 +4,15 @@ import { SearchBar } from "../components/searchBar.js";
 import { ArtistCard } from "../components/artistCard.js";
 
 export function HomeView() {
-  return `
-    <div class="container home-view">
+  const html = `
+    <div class="home-view">
       ${SearchBar()}
       ${QuickActions()}
       ${RecentAlbums()}
       ${RecentArtists()}
     </div>
   `;
+  document.getElementById("view").innerHTML = html;
 }
 
 function QuickActions() {
