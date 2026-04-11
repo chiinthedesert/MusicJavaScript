@@ -5,7 +5,7 @@ import * as state from "../state.js";
 export function PlayerView() {
   const html = `
     <div id="player-view" class="player-view"
-    style="display: flex; flex-direction: column; height: 100vh;">
+    style="display: flex; flex-direction: column; height: 100dvh;">
       <div>
       </div>
       <div class="player-main left-padding right-padding" style="flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;">
