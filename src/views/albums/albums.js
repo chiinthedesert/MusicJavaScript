@@ -8,7 +8,6 @@ export function AlbumsView() {
       ${SearchBar()}
       ${AlbumsHeader()}
       ${AlbumsGrid()}
-      ${AlbumsFooter()}
     </div>
   `;
   document.getElementById("view").innerHTML = html;
