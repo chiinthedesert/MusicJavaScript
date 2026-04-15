@@ -3,7 +3,7 @@
 ## Những việc cần làm
 - [ ] thiết kế giao diện cho desktop
 - [ ] logic queue đơn giản
-- [ ] viết README đầy đủ
+- [ ] viết README đầy đủ, giải thích code album view, artist view và detailed album view để làm mẫu
 - [ ] animation khi chuyển đổi giữa các view, hover
 - [ ] animation cho thanh progress
 - [x] home view
