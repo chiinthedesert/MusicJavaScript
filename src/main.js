@@ -14,6 +14,9 @@ import { handleSongsHover } from "./views/songs/handleSongsHover.js";
 import { AlbumsView } from "./views/albums/AlbumsView.js";
 import { handleAlbumsAction } from "./views/albums/handleAlbumsAction.js";
 
+import { ArtistsView } from "./views/artists/ArtistsView.js";
+import { handleArtistsAction } from "./views/artists/handleArtistsAction.js";
+
 import { PlayerView } from "./views/player/PlayerView.js";
 import { handlePlayerAction } from "./views/player/handlePlayerAction.js";
 
@@ -21,7 +24,6 @@ import { DetailedAlbumView } from "./views/detailedAlbum/DetailedAlbumView.js";
 import { DetailedArtistView } from "./views/detailedArtist/DetailedArtistView.js";
 
 import { PlaylistsView } from "./views/playlists/PlaylistsView.js";
-import { ArtistsView } from "./views/artists/ArtistsView.js";
 
 const app = document.getElementById("app");
 const views = {
@@ -51,6 +53,7 @@ app.onclick = (e) => {
 
   handleSongsAction(action, el);
   handleAlbumsAction(action, el);
+  handleArtistsAction(action, el);
   handlePlayerAction(action, el);
   handleHomeAction(action, el);
   handleNavBarAction(action, el);

@@ -11,7 +11,7 @@ export function TrackItem(track, { variant = "default", index } = {}) {
     currentSong.id === track.id;
 
   return `
-    <li class="track-item no-round row tiny-space center-align ${isActive ? "secondary-container" : ""}"
+    <li class="track-item no-round row tiny-space ${isActive ? "secondary-container" : ""}"
     data-action="songs:track-play"
     data-id="${track.albumId}_${track.id}"
     >
@@ -26,13 +26,12 @@ export function TrackItem(track, { variant = "default", index } = {}) {
 function Cover(track, isActive, isPlaying, variant, index) {
   if (variant === "album") {
     return `
-      <div class="center-align small-text"
-        style="width: 2rem; text-align: center;">
-        ${index}
+      <div class="center-align middle-align"
+        style="width: 3.5rem; height: 3.5rem;>
+        <span">${index}</span>
       </div>
     `;
   }
-
   return `
     <div class="shape ${isActive ? "sided-cookie12" : "no-round"} ${isPlaying ? "rotate" : ""} transparent" 
       style="">

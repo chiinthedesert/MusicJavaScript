@@ -2,6 +2,7 @@ import { albums } from "../../data.js";
 import { AlbumCard } from "../../components/albumCard.js";
 import { SearchBar } from "../../components/searchBar.js";
 import { ArtistCard } from "../../components/artistCard.js";
+import { getArtists } from "../../utils/getArtists.js";
 
 export function HomeView() {
   const html = `
@@ -68,18 +69,7 @@ function RecentAlbums() {
 }
 
 function RecentArtists() {
-  const map = new Map();
-
-  albums.forEach((album) => {
-    if (!map.has(album.artist)) {
-      map.set(album.artist, {
-        name: album.artist,
-        cover: album.artistPhoto,
-      });
-    }
-  });
-
-  const artists = Array.from(map.values());
+  const artists = getArtists();
 
   return `
     <section class="section">
