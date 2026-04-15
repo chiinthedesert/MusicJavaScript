@@ -19,11 +19,41 @@ export const albums = [
 Spirit of my silence, I can hear you
 But I'm afraid to be near you
 And I don't know where to begin
+And I don't know where to begin
 
-Every road leads back to memory
-Every step feels like a question
-That I never learned to answer
-        `.trim(),
+Somewhere in the desert, there's a forest
+And an acre before us
+But I don't know where to begin
+But I don't know where to begin again
+I lost my strength completely
+Oh, be near me, tired old mare
+With the wind in your hair
+
+Amethyst and flowers on the table (on the table)
+Is it real or a fable? (Is it real or a fable?)
+Well, I suppose, a friend is a friend
+And we all know how this will end
+
+Chimney swift that finds me, be my keeper (be my keeper)
+Silhouette of a cedar (silhouette of a cedar)
+What is that song you sing for the dead?
+What is that song you sing for the dead?
+
+I see the signal searchlight strike me
+In the window of my room
+Well, I've got nothing to prove
+Well, I've got nothing to prove
+
+I forgive you, mother, I can hear you (I can hear you)
+And I long to be near you (and I long to be near you)
+But every road leads to an end
+Yes, every road leads to an end
+
+Your apparition passes through me in the willows
+Five red hens
+You'll never see us again
+You'll never see us again
+`.trim(),
       },
       {
         id: "02",
