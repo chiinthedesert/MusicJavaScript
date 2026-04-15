@@ -33,6 +33,7 @@ export function getTracks({ artist, albumId } = {}) {
     album.tracks.map((track) => ({
       ...track,
       albumId: album.id,
+      album: album.name,
       artist: album.artist,
       cover: album.cover,
     })),
