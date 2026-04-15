@@ -126,7 +126,7 @@ function Lyrics() {
   return `
     <div id="lyrics-space" class="secondary top-padding bottom-padding top-round center-align" 
     style="margin-top: auto;">
-      <span style="font-size: 1.25rem; font-weight: bold;">Wanna see lyrics</span>
+      <span style="font-size: 1.25rem; font-weight: bold;">show lyrics /ᐠ > ˕ <マ</span>
     </div>
   `;
 }
