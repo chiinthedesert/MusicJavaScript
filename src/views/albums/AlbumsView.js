@@ -5,23 +5,22 @@ import { getAlbums } from "../../utils/getAlbums.js";
 import * as state from "../../state.js";
 
 export function AlbumsView() {
-    const currentState = state.getState();
-    const sortInfo = currentState.sort.albums;
-    const isSortOpen = currentState.isSortOpen;
-  
-    let albums = getAlbums();
-    albums = sortItems(albums, sortInfo.by, sortInfo.order);
-  
-    const html = `
+  const { sort, isSortOpen } = state.getState();
+  const { by, order } = sort.albums;
+
+  let albums = getAlbums();
+  albums = sortItems(albums, by, order);
+
+  const html = `
       <div id="albums-view" class="albums-view padding">
         ${SearchBar()}
-        ${SortMenu({ sortInfo.by, sortInfo.order, isSortOpen })}
+        ${SortMenu({ by, order, isSortOpen })}
         ${PlayAndShuffle()}
         ${AlbumsGrid(albums)}
       </div>
     `;
-    document.getElementById("view").innerHTML = html;
-  }
+  document.getElementById("view").innerHTML = html;
+}
 
 function SortMenu({ by, order, isSortOpen }) {
   function arrowIcon(type) {
@@ -30,7 +29,7 @@ function SortMenu({ by, order, isSortOpen }) {
     }
     return "";
   }
-  
+
   return `
     <div class="sort row">
       <button data-action="albums:sort-toggle" class="${isSortOpen ? "active" : ""}">
