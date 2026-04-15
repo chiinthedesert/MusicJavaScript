@@ -137,7 +137,8 @@ function Lyrics(lyrics, isLyricsOpen) {
             left: 0;
             bottom: 0;
             width: 100%;
-            height: 50dvh;
+            height: 55dvh;
+            padding-bottom: 2rem !important;
             overflow-y: auto;
           ">
             <h6>${lyrics || "No lyrics"}</h6>
