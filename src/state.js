@@ -2,10 +2,11 @@ const state = {
   currentView: "home",
   viewState: {},
   historyView: [],
-  currentSong: { albumId: "not-cute-anymore", id: "01" },
+  currentSong: { albumId: "carrie-lowell", id: "01" },
   // currentSong: null,
 
   isPlaying: false,
+  isLyricsOpen: false,
   currentTime: 0,
 
   sort: {

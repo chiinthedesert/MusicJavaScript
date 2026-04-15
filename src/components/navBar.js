@@ -11,8 +11,8 @@ export function NavBar() {
       : "";
 
   const html = `
-    <nav class="navbar padding secondary row top-round center-align"
-      style="display: ${hidden};">
+    <nav class="navbar small-padding secondary row top-round center-align"
+      style="display: ${hidden}; border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important;">
 
       ${NavButton("home", "home", currentView)}
       ${NavButton("songs", "library_music", currentView)}

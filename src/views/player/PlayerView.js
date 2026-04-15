@@ -3,7 +3,7 @@ import { formatTime } from "../../utils/formatTime.js";
 import * as state from "../../state.js";
 
 export function PlayerView() {
-  const { isPlaying, currentTime } = state.getState();
+  const { isPlaying, currentTime, isLyricsOpen } = state.getState();
   const song = getCurrentSong();
   const title = song?.title || "Unknown title";
   const artist = song?.artist || "Unknown artist";
@@ -22,7 +22,7 @@ export function PlayerView() {
         ${PrevPlayNext(isPlaying)}
         ${OtherButtons()}
       </div>
-      ${Lyrics()} 
+      ${Lyrics(lyrics, isLyricsOpen)}
     </div>
   `;
   document.getElementById("view").innerHTML = html;
@@ -122,11 +122,34 @@ function OtherButtons() {
     `;
 }
 
-function Lyrics() {
+function Lyrics(lyrics, isLyricsOpen) {
   return `
-    <div id="lyrics-space" class="secondary top-padding bottom-padding top-round center-align" 
-    style="margin-top: auto;">
-      <span style="font-size: 1.25rem; font-weight: bold;">show lyrics /ᐠ > ˕ <マ</span>
+
+    <div id="lyrics-bar" class="secondary small-padding top-round center-align" 
+      style="margin-top: auto; border-bottom-left-radius:0 !important; border-bottom-right-radius:0 !important;"
+    >
+      ${
+        isLyricsOpen
+          ? `
+          <div class="secondary padding" style="
+            white-space: pre-line;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50dvh;
+            overflow-y: auto;
+          ">
+            <h6>${lyrics || "No lyrics"}</h6>
+          </div>
+          `
+          : ""
+      }
+      <button class="" data-action="player:lyrics-toggle">
+        <span style="font-size: 1.25rem; font-weight: bold;">
+          ${isLyricsOpen ? "close lyrics" : "show lyrics"} /ᐠ > ˕ <マ
+        </span>
+      </button>
     </div>
   `;
 }
