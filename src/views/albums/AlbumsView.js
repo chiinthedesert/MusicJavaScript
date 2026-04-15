@@ -19,21 +19,22 @@ export function AlbumsView() {
 
 function AlbumsHeader() {
   return `
-    <div class="section-header row space-between">
-      <h6 class="bold max sortable" id="sort-name" style="cursor:pointer;">
+    <div class="section-header row space-between"
+      style="background:#f5f5f5; margin-bottom:10px;">
+      <h6 class="bold max sortable" id="sort-name" style="cursor:pointer; color:#1976d2;">
         Name ${sortDirection === "asc" ? "↑" : "↓"}</h6>
-      <h6 class="bold">Artist</h6>
-      <h6 class="bold">Date</h6>
+      <h6 class="bold" style="color:#333;">Artist</h6>
+      <h6 class="bold" style="color:#333;">Date</h6>
     </div>
   `;
 }
 function AlbumsGrid(list) {
   return `
-      <div class="grid-list row wrap">
+      <div class="grid-list row wrap" style="padding:15px; background:#fafafa;">
         ${
           list.length > 0
             ? list.map((album) => AlbumCard(album, "albums")).join("")
-            : `<p style="padding: 20px;">No albums found</p>`
+            : `<p style="padding: 20px; color:#999;">No albums found</p>`
         }
       </div>
     `;
