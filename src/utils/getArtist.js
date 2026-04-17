@@ -15,9 +15,15 @@ export function getArtist(name) {
 
   if (artistAlbums.length === 0) return null;
 
+  const totalTracks = artistAlbums.reduce(
+    (sum, album) => sum + album.tracks.length,
+    0,
+  );
+
   return {
     name,
     cover: artistAlbums[0].artistPhoto,
     albums: artistAlbums,
+    tracks: totalTracks,
   };
 }

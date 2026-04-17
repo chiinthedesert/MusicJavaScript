@@ -15,7 +15,6 @@ export function AlbumsView() {
       <div id="albums-view" class="albums-view padding">
         ${SearchBar()}
         ${SortMenu({ by, order, isSortOpen })}
-        ${PlayAndShuffle()}
         ${AlbumsGrid(albums)}
       </div>
     `;
@@ -25,7 +24,7 @@ export function AlbumsView() {
 function SortMenu({ by, order, isSortOpen }) {
   function arrowIcon(type) {
     if (by === type) {
-      return order === "asc" ? "<i>arrow_downward</i>" : "<i>arrow_upward</i>";
+      return order === "asc" ? "<i>arrow_upward</i>" : "<i>arrow_downward</i>";
     }
     return "";
   }

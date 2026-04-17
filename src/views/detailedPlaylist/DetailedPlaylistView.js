@@ -8,7 +8,7 @@ export function DetailedPlaylistView() {
   const playlist = getPlaylist(viewState.playlistId);
 
   if (!playlist) {
-    document.getElementById("view").innerHTML = `
+    document.getElementById("view-container").innerHTML = `
       <div id="detailed-playlist-view" class="padding">
         ${BackButton()}
         <h6 class="bold">Playlist not found.</h6>

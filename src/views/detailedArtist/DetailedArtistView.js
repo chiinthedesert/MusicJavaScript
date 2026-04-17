@@ -12,7 +12,7 @@ export function DetailedArtistView() {
     <div id="detailed-artist-view" class="padding">
 
       ${BackButton()}
-      ${PhotoAndName(artist)}
+      ${PhotoAndInfo(artist)}
       ${PlayAndShuffle()}
       ${ArtistSongs(tracks)}
       ${ArtistAlbums(artist)}
@@ -31,13 +31,16 @@ function BackButton() {
   `;
 }
 
-function PhotoAndName(artist) {
+function PhotoAndInfo(artist) {
   return `
     <section class="row vertical center-align tiny-space">
       <img class="shape circle"
       style="block-size: 16rem; inline-size: 16rem; object-fit: cover;" src="${artist.cover}" alt="" />
-      <div class="artist-name">
+      <div class="artist-info">
         <h6 class="bold">${artist.name}</h6>
+        <div class="center-align">
+          <span>${artist.tracks} songs</span>
+        </div>
       </div>
     </section>
   `;

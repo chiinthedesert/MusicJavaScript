@@ -3,7 +3,6 @@ const state = {
   viewState: {},
   historyView: [],
   currentSong: { albumId: "carrie-lowell", id: "01" },
-  // currentSong: null,
 
   isPlaying: false,
   isLyricsOpen: false,

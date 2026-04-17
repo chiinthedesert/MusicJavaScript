@@ -15,7 +15,6 @@ export function PlaylistsView() {
     <div id="playlists-view" class="playlists-view padding">
       ${SearchBar()}
       ${SortMenu({ by, order, isSortOpen })}
-      ${PlayAndShuffle()}
       ${PlaylistsGrid(playlists)}
     </div>
   `;
@@ -26,7 +25,7 @@ export function PlaylistsView() {
 function SortMenu({ by, order, isSortOpen }) {
   function arrowIcon(type) {
     if (by === type) {
-      return order === "asc" ? "<i>arrow_downward</i>" : "<i>arrow_upward</i>";
+      return order === "asc" ? "<i>arrow_upward</i>" : "<i>arrow_downward</i>";
     }
     return "";
   }
@@ -55,7 +54,7 @@ function SortMenu({ by, order, isSortOpen }) {
 
         <li>
           <button data-action="playlists:sort" data-type="tracks" class="fill small ${by === "tracks" ? "active" : ""}">
-            <span>Tracks</span>
+            <span>Songs</span>
             ${arrowIcon("tracks")}
           </button>
         </li>
@@ -67,10 +66,10 @@ function SortMenu({ by, order, isSortOpen }) {
 function PlayAndShuffle() {
   return `
     <div class="play-buttons row center-align">
-      <button data-action="playlists:play-all" class="shape sided-cookie6 medium active">
+      <button data-action="playlists:play-all" class="play-button shape sided-cookie6 medium active">
         <i class="extra">play_arrow</i>
       </button>
-      <button data-action="playlists:shuffle" class="shape sided-cookie12 medium">
+      <button data-action="playlists:shuffle" class="shuffle-button shape sided-cookie12 medium">
         <i class="extra">shuffle</i>
       </button>
     </div>

@@ -19,11 +19,15 @@ export function getArtists() {
         name: album.artist,
         cover: album.artistPhoto,
         albums: [],
+        tracks: 0,
       });
     }
 
     // Lấy artist ra và thêm album vào danh sách của họ
     map.get(album.artist).albums.push(album);
+
+    // Cập nhật số lượng track của artist
+    map.get(album.artist).tracks += album.tracks.length;
   });
 
   // Trả về mảng artist

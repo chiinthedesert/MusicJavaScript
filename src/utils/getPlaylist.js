@@ -25,6 +25,10 @@ export function getPlaylist(playlistId) {
 
   return {
     ...playlist,
+    cover:
+      typeof playlist.cover === "string" && playlist.cover.trim()
+        ? playlist.cover
+        : "./src/img/no-playlist.jpg",
     duration,
     items,
   };

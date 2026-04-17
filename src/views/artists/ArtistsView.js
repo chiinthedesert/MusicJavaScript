@@ -15,7 +15,6 @@ export function ArtistsView() {
     <div id="artists-view" class="artists-view padding">
       ${SearchBar()}
       ${SortMenu({ by, order, isSortOpen })}
-      ${PlayAndShuffle()}
       ${ArtistsGrid(artists)}
     </div>
   `;
@@ -23,6 +22,13 @@ export function ArtistsView() {
 }
 
 function SortMenu({ by, order, isSortOpen }) {
+  function arrowIcon(type) {
+    if (by === type) {
+      return order === "asc" ? "<i>arrow_upward</i>" : "<i>arrow_downward</i>";
+    }
+    return "";
+  }
+
   return `
     <div class="sort row">
       <button data-action="artists:sort-toggle" class="${isSortOpen ? "active" : ""}">
@@ -34,11 +40,13 @@ function SortMenu({ by, order, isSortOpen }) {
         <li>
           <button data-action="artists:sort" data-type="name" class="fill small ${by === "name" ? "active" : ""}">
             <span>Name</span>
-            ${
-              by === "name"
-                ? `<i>${order === "asc" ? "arrow_downward" : "arrow_upward"}</i>`
-                : ""
-            }
+            ${arrowIcon("name")}
+          </button>
+        </li>
+        <li>
+          <button data-action="artists:sort" data-type="tracks" class="fill small ${by === "tracks" ? "active" : ""}">
+            <span>Songs</span>
+            ${arrowIcon("tracks")}
           </button>
         </li>
       </menu>

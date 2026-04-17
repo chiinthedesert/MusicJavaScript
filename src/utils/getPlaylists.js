@@ -7,5 +7,11 @@ export function getPlaylists({ curator } = {}) {
     result = result.filter((playlist) => playlist.curator === curator);
   }
 
-  return result;
+  return result.map((playlist) => ({
+    ...playlist,
+    cover:
+      typeof playlist.cover === "string" && playlist.cover.trim()
+        ? playlist.cover
+        : "./src/img/no-playlist.jpg",
+  }));
 }

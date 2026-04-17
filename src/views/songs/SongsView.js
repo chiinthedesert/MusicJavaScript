@@ -25,6 +25,13 @@ export function SongsView() {
 }
 
 function SortMenu({ by, order, isSortOpen }) {
+  function arrowIcon(type) {
+    if (by === type) {
+      return order === "asc" ? "<i>arrow_upward</i>" : "<i>arrow_downward</i>";
+    }
+    return "";
+  }
+
   return `
     <div class="sort row">
       <button data-action="songs:sort-toggle" class="${isSortOpen ? "active" : ""}">
@@ -35,34 +42,22 @@ function SortMenu({ by, order, isSortOpen }) {
       <menu class="group no-wrap small-space bottom ${isSortOpen ? "active" : ""}">
         <li>
           <button data-action="songs:sort" data-type="title" class="fill small ${by === "title" ? "active" : ""}">
-            <span>Name</span>
-            ${
-              by === "title"
-                ? `<i>${order === "asc" ? "arrow_downward" : "arrow_upward"}</i>`
-                : ""
-            }
+            <span>Title</span>
+            ${arrowIcon("title")}
           </button>
         </li>
 
         <li>
           <button data-action="songs:sort" data-type="album" class="fill small ${by === "album" ? "active" : ""}">
             <span>Album</span>
-            ${
-              by === "album"
-                ? `<i>${order === "asc" ? "arrow_downward" : "arrow_upward"}</i>`
-                : ""
-            }
+            ${arrowIcon("album")}
           </button>
         </li>
 
         <li>
           <button data-action="songs:sort" data-type="artist" class="fill small ${by === "artist" ? "active" : ""}">
             <span>Artist</span>
-            ${
-              by === "artist"
-                ? `<i>${order === "asc" ? "arrow_downward" : "arrow_upward"}</i>`
-                : ""
-            }
+            ${arrowIcon("artist")}
           </button>
         </li>
       </menu>
