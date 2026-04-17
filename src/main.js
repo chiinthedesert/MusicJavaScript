@@ -62,6 +62,23 @@ app.onclick = (e) => {
   handleHomeAction(action, el);
   handleNavBarAction(action, el);
 };
+
+app.onkeydown = (e) => {
+  const el = e.target;
+
+  if (el.id !== "search-input") return;
+  if (e.key !== "Enter") return;
+
+  const { currentView, search } = state.getState();
+
+  state.setState({
+    search: {
+      ...search,
+      [currentView]: el.value,
+    },
+  });
+};
+
 handleSongsHover();
 
 state.subscribe(() => {

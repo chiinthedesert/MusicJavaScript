@@ -5,10 +5,19 @@ import { getAlbums } from "../../utils/getAlbums.js";
 import * as state from "../../state.js";
 
 export function AlbumsView() {
-  const { sort, isSortOpen } = state.getState();
+  const { sort, isSortOpen, search } = state.getState();
   const { by, order } = sort.albums;
 
+  const searchQuery = search.albums.toLowerCase();
+
   let albums = getAlbums();
+  if (searchQuery) {
+    albums = albums.filter(
+      (album) =>
+        album.name.toLowerCase().includes(searchQuery) ||
+        album.artist.toLowerCase().includes(searchQuery),
+    );
+  }
   albums = sortItems(albums, by, order);
 
   const html = `
@@ -78,7 +87,7 @@ function PlayAndShuffle() {
 
 function AlbumsGrid(albums) {
   if (albums.length === 0) {
-    return `<p>No albums found</p>`;
+    return `<h6>No albums found</h6>`;
   }
 
   return `

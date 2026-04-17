@@ -20,6 +20,13 @@ const state = {
   isShuffle: false,
   isRepeat: false,
 
+  search: {
+    songs: "",
+    albums: "",
+    artists: "",
+    playlists: "",
+  },
+
   sort: {
     songs: { by: "title", order: "asc" },
     albums: { by: "name", order: "asc" },
@@ -39,10 +46,12 @@ export function subscribe(fn) {
 }
 
 export function setState(partial, { skipHistory = false } = {}) {
+  const next = typeof partial === "function" ? partial(state) : partial;
+
   if (
     !skipHistory &&
-    partial.currentView &&
-    partial.currentView !== state.currentView
+    next.currentView &&
+    next.currentView !== state.currentView
   ) {
     state.historyView.push({
       currentView: state.currentView,
@@ -50,7 +59,7 @@ export function setState(partial, { skipHistory = false } = {}) {
     });
   }
 
-  Object.assign(state, partial);
+  Object.assign(state, next);
 
   listeners.forEach((fn) => fn());
 }

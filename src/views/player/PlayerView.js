@@ -31,7 +31,7 @@ export function PlayerView() {
         ${BackButton()}
         ${AlbumCover(cover, isPlaying)}
         ${TitleAndArtist(title, artist, isFavorite)}
-        ${Progress(currentTime, song)}
+        ${Progress(song)}
         ${PrevPlayNext(isPlaying)}
         ${OtherButtons(isShuffle, isRepeat)}
       </div>
@@ -82,12 +82,12 @@ function TitleAndArtist(title, artist, isFavorite) {
   `;
 }
 
-function Progress(currentTime, song) {
+function Progress(song) {
   return `
     <div class="progress">
-      <progress class="wavy" value="${currentTime}" max="${song?.duration || 1}"></progress>
+      <progress class="" value="${song?.duration / 2}" max="${song?.duration || 1}"></progress>
       <div class="row no-margin">
-        <span class="max">${formatTime(currentTime)}</span>
+        <span class="max">${formatTime(Math.round(song?.duration / 2))}</span>
         <span>${formatTime(song?.duration || 0)}</span>
       </div>
     </div>

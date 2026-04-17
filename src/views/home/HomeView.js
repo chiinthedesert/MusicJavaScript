@@ -9,7 +9,6 @@ import { getPlaylists } from "../../utils/getPlaylists.js";
 export function HomeView() {
   const html = `
     <div id="home-view" class="home-view padding">
-      ${SearchBar()}
       ${QuickActions()}
       ${RecentAlbums()}
       ${RecentArtists()}

@@ -6,10 +6,19 @@ import { getTracks } from "../../utils/getTracks.js";
 import { sortItems } from "../../utils/sortItems.js";
 
 export function SongsView() {
-  const { sort, isSortOpen } = state.getState();
+  const { sort, isSortOpen, search } = state.getState();
   const { by, order } = sort.songs;
+  const searchQuery = search.songs.toLowerCase();
 
   let tracks = getTracks();
+  if (searchQuery) {
+    tracks = tracks.filter(
+      (track) =>
+        track.title.toLowerCase().includes(searchQuery) ||
+        track.artist.toLowerCase().includes(searchQuery),
+    );
+  }
+
   tracks = sortItems(tracks, by, order);
 
   const html = `
@@ -79,6 +88,12 @@ function PlayAndShuffle() {
 }
 
 function SongsListSection(tracks) {
+  if (tracks.length === 0) {
+    return `
+      <h5 class="section-title bold top-margin">Songs</h5>
+      <h6>No songs found</h6>
+    `;
+  }
   return `
     <h5 class="section-title bold top-margin">Songs</h5>
     <section>

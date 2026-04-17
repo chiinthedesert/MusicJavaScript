@@ -5,10 +5,18 @@ import { getPlaylists } from "../../utils/getPlaylists.js";
 import * as state from "../../state.js";
 
 export function PlaylistsView() {
-  const { sort, isSortOpen } = state.getState();
+  const { sort, isSortOpen, search } = state.getState();
   const { by, order } = sort.playlists;
+  const searchQuery = search.playlists.toLowerCase();
 
   let playlists = getPlaylists();
+  if (searchQuery) {
+    playlists = playlists.filter(
+      (playlist) =>
+        playlist.name.toLowerCase().includes(searchQuery) ||
+        (playlist.curator || "").toLowerCase().includes(searchQuery),
+    );
+  }
   playlists = sortItems(playlists, by, order);
 
   const html = `
@@ -78,7 +86,10 @@ function PlayAndShuffle() {
 
 function PlaylistsGrid(playlists) {
   if (playlists.length === 0) {
-    return `<p>No playlists found</p>`;
+    return `
+      <h5 class="section-title bold top-margin">Playlists</h5>
+      <h6>No playlists found</h6>
+    `;
   }
 
   return `

@@ -5,10 +5,19 @@ import { getArtists } from "../../utils/getArtists.js";
 import * as state from "../../state.js";
 
 export function ArtistsView() {
-  const { sort, isSortOpen } = state.getState();
+  const { sort, isSortOpen, search } = state.getState();
   const { by, order } = sort.artists;
 
+  const searchQuery = search.artists.toLowerCase();
+
   let artists = getArtists();
+
+  if (searchQuery) {
+    artists = artists.filter((artist) =>
+      artist.name.toLowerCase().includes(searchQuery),
+    );
+  }
+
   artists = sortItems(artists, by, order);
 
   const html = `
@@ -69,7 +78,10 @@ function PlayAndShuffle() {
 
 function ArtistsGrid(artists) {
   if (artists.length === 0) {
-    return `<p>No artists found</p>`;
+    return `
+      <h5 class="section-title bold top-margin">Artists</h5>
+      <h6>No artists found</h6>
+    `;
   }
 
   return `
