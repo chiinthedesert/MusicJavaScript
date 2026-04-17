@@ -3,7 +3,20 @@ import { formatTime } from "../../utils/formatTime.js";
 import * as state from "../../state.js";
 
 export function PlayerView() {
-  const { isPlaying, currentTime, isLyricsOpen } = state.getState();
+  const {
+    favoriteSongs,
+    currentSong,
+    isPlaying,
+    isShuffle,
+    isRepeat,
+    currentTime,
+    isLyricsOpen,
+  } = state.getState();
+
+  const isFavorite = favoriteSongs.includes(
+    `${currentSong?.albumId}:${currentSong?.id}`,
+  );
+
   const song = getCurrentSong();
   const title = song?.title || "Unknown title";
   const artist = song?.artist || "Unknown artist";
@@ -17,10 +30,10 @@ export function PlayerView() {
       <div class="player-main left-padding right-padding" style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
         ${BackButton()}
         ${AlbumCover(cover, isPlaying)}
-        ${TitleAndArtist(title, artist)}
+        ${TitleAndArtist(title, artist, isFavorite)}
         ${Progress(currentTime, song)}
         ${PrevPlayNext(isPlaying)}
-        ${OtherButtons()}
+        ${OtherButtons(isShuffle, isRepeat)}
       </div>
       ${Lyrics(lyrics, isLyricsOpen)}
     </div>
@@ -49,7 +62,7 @@ function AlbumCover(cover, isPlaying) {
   `;
 }
 
-function TitleAndArtist(title, artist) {
+function TitleAndArtist(title, artist, isFavorite) {
   return `
     <div class="row no-margin">
       <div class="max">
@@ -62,7 +75,7 @@ function TitleAndArtist(title, artist) {
             <span>${artist}</span>
         </div>
       </div>
-      <button data-action="player:favorite" class="circle extra">
+      <button data-action="player:favorite" class="circle extra ${isFavorite ? "active" : ""}">
         <i class="extra">favorite</i>
       </button>
     </div>
@@ -101,17 +114,17 @@ function PrevPlayNext(isPlaying) {
     `;
 }
 
-function OtherButtons() {
+function OtherButtons(isShuffle, isRepeat) {
   return `
     <div class="row no-margin gap">
       <div class="group max">
         <button data-action="player:queue" class="left-round">
           <i>queue_music</i>
         </button>
-        <button data-action="player:shuffle" class="no-round">
+        <button data-action="player:shuffle" class="no-round ${isShuffle ? "active" : ""}">
           <i>shuffle</i>
         </button>
-        <button data-action="player:repeat" class="right-round">
+        <button data-action="player:repeat" class="right-round ${isRepeat ? "active" : ""}">
           <i>repeat</i>
         </button>
       </div>

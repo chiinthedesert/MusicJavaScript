@@ -13,6 +13,21 @@ export function handlePlayerAction(action, el) {
       state.setState({ currentView: "player", viewState: {} });
       break;
 
+    case "player:favorite": {
+      const { favoriteSongs, currentSong } = state.getState();
+      const songId = `${currentSong.albumId}:${currentSong.id}`;
+
+      const isFavorite = favoriteSongs.includes(songId);
+
+      state.setState({
+        favoriteSongs: isFavorite
+          ? favoriteSongs.filter((id) => id !== songId)
+          : [...favoriteSongs, songId],
+      });
+
+      break;
+    }
+
     case "player:play-toggle": {
       const { isPlaying } = state.getState();
       state.setState({ isPlaying: !isPlaying });
@@ -27,13 +42,15 @@ export function handlePlayerAction(action, el) {
       console.log("next song");
       break;
 
-    case "player:shuffle":
-      console.log("shuffle");
+    case "player:shuffle": {
+      state.setState({ isShuffle: !state.getState().isShuffle });
       break;
+    }
 
-    case "player:repeat":
-      console.log("repeat");
+    case "player:repeat": {
+      state.setState({ isRepeat: !state.getState().isRepeat });
       break;
+    }
 
     case "player:queue":
       console.log("queue");

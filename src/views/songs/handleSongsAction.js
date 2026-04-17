@@ -53,8 +53,26 @@ export function handleSongsAction(action, el) {
       console.log("shuffle");
       break;
 
-    case "songs:track-menu":
-      console.log("open track menu");
+    case "songs:go-to-album": {
+      const albumId = el.dataset.albumId;
+
+      state.setState({
+        currentView: "detailedAlbum",
+        viewState: { albumId },
+      });
+
       break;
+    }
+
+    case "songs:go-to-artist": {
+      const artistName = el.dataset.artist;
+
+      state.setState({
+        currentView: "detailedArtist",
+        viewState: { artistName },
+      });
+
+      break;
+    }
   }
 }

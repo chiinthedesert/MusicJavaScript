@@ -18,7 +18,7 @@ export function TrackItem(track, { variant = "default", index } = {}) {
       ${Cover(track, isActive, isPlaying, variant, index)}
       ${TitleAndArtist(track)}
       ${Duration(track)}
-      ${Menu()}
+      ${Menu(track)}
     </li>
   `;
 }
@@ -69,10 +69,16 @@ function Duration(track) {
     </div>
   `;
 }
-function Menu() {
+function Menu(track) {
   return `
+  <div>
     <button data-action="songs:track-menu" class="circle transparent">
       <i>more_vert</i>
     </button>
+    <menu class="secondary-container center-align left no-wrap">
+      <li data-action="songs:go-to-album" data-album-id="${track.albumId}">Go to album</li>
+      <li data-action="songs:go-to-artist" data-artist="${track.artist}">Go to artist</li>
+    </menu>
+  </div>
   `;
 }
