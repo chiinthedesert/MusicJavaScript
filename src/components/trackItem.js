@@ -78,6 +78,7 @@ function Menu(track) {
     <menu class="secondary-container center-align left no-wrap">
       <li data-action="songs:go-to-album" data-album-id="${track.albumId}">Go to album</li>
       <li data-action="songs:go-to-artist" data-artist="${track.artist}">Go to artist</li>
+      <li data-action="songs:add-to-playlist" data-id="${track.albumId}_${track.id}">Add to playlist</li>
     </menu>
   </div>
   `;

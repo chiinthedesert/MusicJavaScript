@@ -22,6 +22,7 @@ export function DetailedPlaylistView() {
       ${BackButton()}
       ${PhotoAndInfo(playlist)}
       ${PlayAndShuffle()}
+      ${EditButton()}
       ${PlaylistTracks(playlist.items)}
     </div>
   `;
@@ -60,6 +61,16 @@ function PlayAndShuffle() {
       </button>
       <button data-action="songs:shuffle" class="shape sided-cookie12 medium">
         <i class="extra">shuffle</i>
+      </button>
+    </div>
+  `;
+}
+
+function EditButton() {
+  return `
+    <div class="edit-button-container row center-align">
+      <button data-action="playlists:edit" class="shape sided-cookie4 medium">
+        <i class="extra">edit</i>
       </button>
     </div>
   `;
