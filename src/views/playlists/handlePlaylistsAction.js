@@ -1,15 +1,6 @@
 import * as state from "../../state.js";
 
 export function handlePlaylistsAction(action, el) {
-  if (action === "playlist-click") {
-    const playlistId = el.dataset.playlistId;
-    state.setState({
-      currentView: "detailedPlaylist",
-      viewState: { playlistId },
-    });
-    return;
-  }
-
   if (!action.startsWith("playlists:")) return;
 
   const current = state.getState();
@@ -34,6 +25,15 @@ export function handlePlaylistsAction(action, el) {
             order: isSame && currentSort.order === "asc" ? "desc" : "asc",
           },
         },
+      });
+      break;
+    }
+
+    case "playlists:playlist-click": {
+      const playlistId = el.dataset.playlistId;
+      state.setState({
+        currentView: "detailedPlaylist",
+        viewState: { playlistId },
       });
       break;
     }

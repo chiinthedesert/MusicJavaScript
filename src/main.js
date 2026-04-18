@@ -1,15 +1,14 @@
 ui("theme", "#FFB4B4");
+
 import * as state from "./state.js";
 
 import { NavBar, handleNavBarAction } from "./components/navBar.js";
 import { PlayerBar } from "./components/playerBar.js";
 
 import { HomeView } from "./views/home/HomeView.js";
-import { handleHomeAction } from "./views/home/handleHomeAction.js";
 
 import { SongsView } from "./views/songs/SongsView.js";
 import { handleSongsAction } from "./views/songs/handleSongsAction.js";
-import { handleSongsHover } from "./views/songs/handleSongsHover.js";
 
 import { AlbumsView } from "./views/albums/AlbumsView.js";
 import { handleAlbumsAction } from "./views/albums/handleAlbumsAction.js";
@@ -59,7 +58,6 @@ app.onclick = (e) => {
   handleArtistsAction(action, el);
   handlePlaylistsAction(action, el);
   handlePlayerAction(action, el);
-  handleHomeAction(action, el);
   handleNavBarAction(action, el);
 };
 
@@ -78,8 +76,6 @@ app.onkeydown = (e) => {
     },
   });
 };
-
-handleSongsHover();
 
 state.subscribe(() => {
   renderView();

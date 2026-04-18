@@ -10,7 +10,6 @@ export function PlayerView() {
     isShuffle,
     isRepeat,
     currentTime,
-    isLyricsOpen,
   } = state.getState();
 
   const isFavorite = favoriteSongs.includes(
@@ -35,7 +34,7 @@ export function PlayerView() {
         ${PrevPlayNext(isPlaying)}
         ${OtherButtons(isShuffle, isRepeat)}
       </div>
-      ${Lyrics(lyrics, isLyricsOpen)}
+      ${Lyrics(lyrics)}
     </div>
   `;
   document.getElementById("view-container").innerHTML = html;
@@ -135,35 +134,30 @@ function OtherButtons(isShuffle, isRepeat) {
     `;
 }
 
-function Lyrics(lyrics, isLyricsOpen) {
+function Lyrics(lyrics) {
   return `
     <div id="lyrics-bar" class="lyrics-bar secondary small-padding top-round center-align" 
       style="margin-top: auto; 
       border-bottom-left-radius:0 !important;
       border-bottom-right-radius:0 !important;"
     >
-      ${
-        isLyricsOpen
-          ? `
-          <div class="lyrics-space secondary padding" style="
-            white-space: pre-line;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 55dvh;
-            padding-bottom: 2rem !important;
-            overflow-y: auto;
-          ">
-            <h6>${lyrics || "No lyrics"}</h6>
-          </div>
-          `
-          : ""
-      }
+      <div class="lyrics-space secondary padding" style="
+        white-space: pre-line;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 70dvh;
+        padding-bottom: 2rem !important;
+        overflow-y: auto;
+      ">
+        <h6>${lyrics || "No lyrics"}</h6>
+      </div>
+
       <button class="lyrics-button" data-action="player:lyrics-toggle">
         <span style="font-size: 1.25rem; font-weight: bold;">
-          ${isLyricsOpen ? "close lyrics" : "show lyrics"} /ᐠ > ˕ <マ
+           show lyrics /ᐠ > ˕ <マ
         </span>
       </button>
     </div>

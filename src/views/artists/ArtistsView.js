@@ -42,7 +42,7 @@ function SortMenu({ by, order, isSortOpen }) {
     <div class="sort row">
       <button data-action="artists:sort-toggle" class="${isSortOpen ? "active" : ""}">
         <span>Sort</span>
-        <i>sort</i>
+        ${isSortOpen ? "<i>close</i>" : "<i>sort</i>"}
       </button>
 
       <menu class="group no-wrap small-space bottom ${isSortOpen ? "active" : ""}">

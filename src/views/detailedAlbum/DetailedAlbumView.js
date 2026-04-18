@@ -50,7 +50,7 @@ function PhotoAndInfo(album) {
 function AlbumArtist(album) {
   return `
     <section class="album-artist">
-      <div data-action="artist-click" data-artist="${album.artist}" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+      <div class="album-artist-click" data-action="artists:artist-click" data-artist="${album.artist}" style="display: inline-flex; align-items: center; gap: 0.5rem;">
         <img class="circle extra"
         style="object-fit: cover;" src="${album.artistPhoto}" alt="" />
         <div class="artist-info">

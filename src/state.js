@@ -15,7 +15,6 @@ const state = {
   ],
 
   isPlaying: false,
-  isLyricsOpen: false,
   currentTime: 0,
   isShuffle: false,
   isRepeat: false,

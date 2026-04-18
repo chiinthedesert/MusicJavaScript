@@ -30,6 +30,17 @@ export function handleAlbumsAction(action, el) {
       break;
     }
 
+    case "albums:album-click": {
+      const albumId = el.dataset.albumId;
+
+      state.setState({
+        currentView: "detailedAlbum",
+        viewState: { albumId },
+      });
+
+      break;
+    }
+
     case "albums:play-all":
       console.log("play all");
       break;

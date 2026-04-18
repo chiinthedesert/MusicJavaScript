@@ -52,11 +52,11 @@ p {
   padding-bottom: calc(5rem + env(safe-area-inset-bottom));
 }
 
+/* responsive layout cho navbar, player bar, search bar */
 @media (min-width: 1024px) {
   #player-bar,
   #navbar,
-  #search-bar,
-  .lyrics-space {
+  #search-bar {
     left: 50% !important;
     right: auto !important;
 
@@ -64,6 +64,19 @@ p {
     max-width: 65rem;
 
     transform: translateX(-50%);
+  }
+
+  .lyrics-space {
+    left: 50% !important;
+    right: auto !important;
+
+    max-width: 65rem;
+    width: 100%;
+
+    transform: translate(-50%, 100%) !important;
+  }
+  .lyrics-space.open {
+    transform: translate(-50%, 0) !important;
   }
 
   .play-button,
@@ -98,4 +111,51 @@ p {
   .grid {
     grid-template-columns: repeat(6, 1fr) !important;
   }
+}
+
+/* animation đơn giản */
+.horizontal-list {
+  padding: 0.5rem;
+}
+
+.card,
+.album-artist-click {
+  transition: transform 0.2s ease;
+}
+
+.card:hover,
+.album-artist-click:hover {
+  transform: scale(1.02);
+}
+
+.track-item {
+  transition: margin-left 0.25s ease;
+}
+.track-item:hover {
+  background: var(--surface-container);
+  margin-left: 0.5rem;
+}
+
+.lyrics-space {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 70dvh;
+
+  transform: translateY(100%);
+  opacity: 0;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+
+  pointer-events: none;
+}
+
+.lyrics-space.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }

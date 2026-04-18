@@ -57,9 +57,17 @@ export function handlePlayerAction(action, el) {
       break;
 
     case "player:lyrics-toggle": {
-      const { isLyricsOpen } = state.getState();
+      const space = document.querySelector(".lyrics-space");
+      const text = document.querySelector(".lyrics-button span");
 
-      state.setState({ isLyricsOpen: !isLyricsOpen });
+      if (!space || !text) return;
+
+      const open = space.classList.toggle("open");
+
+      text.textContent = open
+        ? "close lyrics /ᐠ > ˕ <マ"
+        : "show lyrics /ᐠ > ˕ <マ";
+
       break;
     }
   }

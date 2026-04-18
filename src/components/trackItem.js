@@ -71,7 +71,7 @@ function Duration(track) {
 }
 function Menu(track) {
   return `
-  <div>
+  <div style="">
     <button data-action="songs:track-menu" class="circle transparent">
       <i>more_vert</i>
     </button>

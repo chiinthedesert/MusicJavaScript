@@ -30,6 +30,17 @@ export function handleArtistsAction(action, el) {
       break;
     }
 
+    case "artists:artist-click": {
+      const artistName = el.dataset.artist;
+
+      state.setState({
+        currentView: "detailedArtist",
+        viewState: { artistName },
+      });
+
+      break;
+    }
+
     case "artists:play-all":
       console.log("play all");
       break;
